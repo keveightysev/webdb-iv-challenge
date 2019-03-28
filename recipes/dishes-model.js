@@ -1,7 +1,11 @@
 const db = require('../data/dbConfig.js');
 
-module.exports = { getDishes };
+module.exports = { getDishes, addDish };
 
 function getDishes() {
   return db('dishes');
+}
+
+function addDish(dish) {
+  return db('dishes').insert(dish);
 }

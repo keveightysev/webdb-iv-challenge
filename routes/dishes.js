@@ -25,4 +25,17 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const dish = await Dishes.getDishById(req.params.id);
+    if (dish) {
+      res.status(200).json(dish);
+    } else {
+      res.status(404).json({ message: 'Could not find dish with that ID' });
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
